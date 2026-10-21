@@ -1,0 +1,21 @@
+---
+import site from '../content/site';
+---
+
+<section
+  class="border-y border-navy-line bg-gradient-to-r from-navy via-navy-elevated/80 to-navy"
+  aria-label={site.excelStrip.ariaLabel}
+>
+  <div class="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:py-20">
+    <h2 class="max-w-xl font-display text-2xl font-bold tracking-tight text-offwhite sm:text-3xl">
+      {site.excelStrip.headline}
+    </h2>
+    <ul class="flex flex-wrap gap-3 text-sm font-medium text-navy-fog">
+      {
+        site.excelStrip.points.map((point) => (
+          <li class="rounded-full border border-accent/25 bg-accent/10 px-4 py-2 text-offwhite">{point}</li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

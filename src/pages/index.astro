@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ExcelStrip from '../components/ExcelStrip.astro';
+import MobileBridge from '../components/MobileBridge.astro';
+import FeatureTabs from '../components/react/FeatureTabs';
+import DemoCTA from '../components/DemoCTA.astro';
+import site from '../content/site';
+---
+
+<BaseLayout path="/">
+  <Hero />
+  <ExcelStrip />
+  <MobileBridge />
+  <FeatureTabs
+    client:load
+    tabs={site.features.tabs}
+    labels={{
+      live: site.features.live,
+      roadmap: site.features.roadmap,
+      roadmapNote: site.features.roadmapNote,
+      tabsAria: site.features.tabsAria,
+    }}
+    sectionTitle={site.features.sectionTitle}
+    sectionSubtitle={site.features.sectionSubtitle}
+    radarAria={site.features.radarAria}
+    panel={site.features.panel}
+    telemetry={site.features.telemetry}
+  />
+  <DemoCTA />
+</BaseLayout>

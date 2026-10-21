@@ -1,0 +1,42 @@
+---
+import { buildHomeJsonLd } from '../lib/jsonld';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  noindex?: boolean;
+  siteName: string;
+}
+
+const { title, description, path = '/', noindex = false, siteName } = Astro.props;
+const site = Astro.site ?? new URL('https://cebi.tulipfleet.com');
+const canonical = new URL(path, site).href;
+const ogImage = new URL('/og-default.svg', site).href;
+const jsonLdBlocks = path === '/' ? buildHomeJsonLd({ site, description }) : [];
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="generator" content={Astro.generator} />
+{noindex ? <meta name="robots" content="noindex" /> : null}
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteName} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content="tr_TR" />
+<meta property="og:image" content={ogImage} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+{
+  jsonLdBlocks.map((block) => (
+    <script type="application/ld+json" set:html={JSON.stringify(block)} />
+  ))
+}

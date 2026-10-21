@@ -1,0 +1,68 @@
+---
+import site from '../content/site';
+
+const m = site.mobileBridge;
+---
+
+<section id="mobile" class="relative overflow-hidden py-24 lg:py-32">
+  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_left,var(--color-accent-dim),transparent_50%)]" />
+
+  <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+    <div class="order-2 flex justify-center lg:order-1">
+      <div class="mx-auto w-[240px] sm:w-[260px]">
+        <div class="rounded-[2rem] border border-navy-line bg-navy-deep p-2 shadow-hero-window">
+          <div class="mb-2 flex justify-center">
+            <span class="h-1.5 w-16 rounded-full bg-navy-fog/25"></span>
+          </div>
+          <div class="aspect-[9/19] overflow-hidden rounded-[1.4rem] border border-navy-line bg-navy-elevated p-3">
+            <div class="rounded-lg border border-white/10 bg-white/5 p-3">
+              <p class="text-xs font-semibold leading-snug text-offwhite">{m.phoneTitle}</p>
+              <p class="mt-1.5 text-[11px] leading-snug text-emerald">{m.phoneSub}</p>
+            </div>
+            <div class="mt-4 space-y-2.5" aria-hidden="true">
+              <div class="h-2 w-5/6 rounded bg-white/10"></div>
+              <div class="h-2 w-2/3 rounded bg-white/10"></div>
+              <div class="h-16 rounded-lg border border-navy-line bg-navy-ink/50"></div>
+              <div class="h-2 w-3/4 rounded bg-white/10"></div>
+              <div class="h-2 w-1/2 rounded bg-white/10"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="order-1 lg:order-2">
+      <span class="badge-live !normal-case">{m.liveBadge}</span>
+      <h2 class="mt-6 font-display text-3xl font-bold tracking-tight text-offwhite sm:text-4xl lg:text-5xl">
+        {m.title}
+      </h2>
+      <p class="mt-6 text-lg font-medium leading-relaxed text-navy-fog lg:text-xl">
+        {m.subtitle}
+      </p>
+      <p class="mt-5 max-w-[65ch] text-base font-medium leading-relaxed text-navy-fog lg:text-lg">
+        {m.body}
+      </p>
+
+      <p class="mt-10 font-display text-sm font-semibold uppercase tracking-wide text-accent-soft">
+        {m.cycleLabel}
+      </p>
+      <ol class="mt-4 space-y-3">
+        {
+          m.steps.map((step, i) => (
+            <li class="flex items-start gap-3 text-sm font-medium text-navy-fog sm:text-base">
+              <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent/20 font-display text-xs font-bold text-accent-soft">
+                {i + 1}
+              </span>
+              <span>
+                {step}
+                {i < m.steps.length - 1 ? (
+                  <span class="ml-2 hidden text-accent-soft/60 sm:inline" aria-hidden="true">→</span>
+                ) : null}
+              </span>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>

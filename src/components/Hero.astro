@@ -1,0 +1,47 @@
+---
+import HeroMockup from './react/HeroMockup';
+import site from '../content/site';
+
+const h = site.hero;
+---
+
+<section class="relative overflow-hidden py-24 lg:py-32">
+  <div
+    class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,var(--color-accent-dim),transparent_55%),radial-gradient(ellipse_at_bottom_left,var(--color-emerald-dim),transparent_50%)]"
+  />
+
+  <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
+    <div class="fade-in-up">
+      <div class="capsule-glow mb-8 w-fit">
+        <span>{h.badge}</span>
+      </div>
+
+      <h1 class="font-display text-4xl font-bold leading-[1.1] tracking-tight text-offwhite text-balance sm:text-5xl lg:text-6xl">
+        {h.title}
+      </h1>
+
+      <p class="mt-8 max-w-[65ch] text-lg font-medium leading-relaxed text-navy-fog lg:text-xl">
+        {h.subtitle}
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <a href="#contact" class="btn-primary whitespace-nowrap">{h.ctaDemo}</a>
+        <a href="#features" class="btn-outline whitespace-nowrap">{h.ctaFeatures}</a>
+      </div>
+    </div>
+
+    <div class="fade-in-up relative [animation-delay:120ms] [animation-fill-mode:both]">
+      <HeroMockup
+        client:load
+        title={h.mockupTitle}
+        liveLabel={h.mockupLive}
+        jobsLabel={h.mockupJobs}
+        disclaimer={h.mockupDisclaimer}
+        jobs={h.jobs}
+        phonePushTitle={h.phonePushTitle}
+        phonePushSub={h.phonePushSub}
+        scenarios={h.scenarios}
+      />
+    </div>
+  </div>
+</section>

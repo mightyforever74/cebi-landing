@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#0A0F24"/>
+  <circle cx="980" cy="120" r="220" fill="#FF5722" fill-opacity="0.18"/>
+  <circle cx="200" cy="520" r="180" fill="#10B981" fill-opacity="0.08"/>
+  <text x="80" y="280" font-family="Segoe UI, Arial, sans-serif" font-size="72" font-weight="700" fill="#F8FAFC">Cebi</text>
+  <text x="80" y="360" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#94A3B8">Saha operasyonunu tek ekrandan yönetin</text>
+  <rect x="80" y="420" width="220" height="48" rx="12" fill="#FF5722"/>
+  <text x="110" y="452" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="600" fill="#FFFFFF">Demo İsteyin</text>
+</svg>

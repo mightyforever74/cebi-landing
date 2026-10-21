@@ -1,0 +1,28 @@
+# Cebi
+
+Cebi (TulipFleet Customer Edition), tek bir müşteri için beyaz-etiketli (white-label)
+saha operasyonu yazılımıdır: gemi boşaltma/kantar geofence doğrulaması, dispatcher
+otomasyonu ve canlı kargo takibi.
+
+## Kimin için
+
+Tek bir kurumsal müşteri için özel yapım tek-kiracılı dağıtım — genel kullanıma
+açık bir self-servis SaaS değildir.
+
+## Bugün ne var
+
+- Liman/tesis geofence: araç tanımlı sınıra girip çıktığında otomatik algılanır.
+- Kantar (weighbridge) kapısı: tartım doğrulanmadan görev kapanamaz.
+- Dispatcher paneli: görev atama → kabul → tamamlama akışı, hatasız canlı kargo takibi.
+- Kendi ESP32 tabanlı araç kutusu (GPS + ivmeölçer, TLS-MQTT) ve sürücü mobil uygulaması (iOS + Android).
+
+## Sırada
+
+- Rota bazlı otomatik şoför yevmiye hesaplama.
+- Kantar verisinin doğrudan dijital entegrasyonu.
+- Dışa aktarılabilir aylık operasyon raporu.
+
+## Şirket
+
+TulipFleet B.V. (Cebi, TulipFleet'in Customer Edition ürün hattıdır).
+Kurucu: Cem Sahinkaya. E-posta: info@tulipfleet.com.

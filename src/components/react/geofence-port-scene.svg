@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" fill="none">
+  <rect width="400" height="240" fill="#0d1427" />
+  <!-- su -->
+  <rect x="0" y="150" width="400" height="90" fill="#121a32" />
+  <path d="M0 150 Q 50 142 100 150 T 200 150 T 300 150 T 400 150 V240 H0 Z" fill="#0a0f24" opacity="0.6" />
+
+  <!-- rıhtım -->
+  <rect x="0" y="130" width="400" height="22" fill="#070b18" />
+  <rect x="0" y="150" width="400" height="4" fill="#1d2744" />
+
+  <!-- gemi gövdesi -->
+  <path d="M40 120 L300 120 L280 150 L55 150 Z" fill="#1a2340" stroke="#2a3660" stroke-width="2" />
+  <rect x="70" y="92" width="40" height="30" rx="3" fill="#1a2340" stroke="#2a3660" stroke-width="2" />
+  <rect x="130" y="100" width="130" height="22" rx="2" fill="#162043" stroke="#2a3660" stroke-width="1.5" />
+  <!-- konteynerler -->
+  <rect x="140" y="104" width="20" height="14" fill="#ff5722" opacity="0.55" />
+  <rect x="164" y="104" width="20" height="14" fill="#10b981" opacity="0.5" />
+  <rect x="188" y="104" width="20" height="14" fill="#ff7043" opacity="0.5" />
+  <rect x="212" y="104" width="20" height="14" fill="#10b981" opacity="0.45" />
+  <rect x="236" y="104" width="20" height="14" fill="#ff5722" opacity="0.45" />
+
+  <!-- kantar / weighbridge -->
+  <g>
+    <rect x="300" y="142" width="70" height="10" rx="2" fill="#1d2744" stroke="#3a4770" stroke-width="1.5" />
+    <rect x="310" y="128" width="50" height="16" rx="2" fill="#121a32" stroke="#3a4770" stroke-width="1.5" />
+  </g>
+
+  <!-- geofence halkaları (gemi/liman çevresi) -->
+  <g class="geofence-rings">
+    <circle cx="170" cy="130" r="55" fill="none" stroke="#10b981" stroke-width="1.4" opacity="0.55" />
+    <circle cx="170" cy="130" r="80" fill="none" stroke="#10b981" stroke-width="1" opacity="0.3" />
+    <circle cx="170" cy="130" r="4" fill="#10b981" />
+  </g>
+
+  <!-- kantar geofence halkası -->
+  <g class="geofence-rings geofence-rings--alt">
+    <circle cx="335" cy="137" r="26" fill="none" stroke="#ff7043" stroke-width="1.2" opacity="0.6" />
+    <circle cx="335" cy="137" r="2.6" fill="#ff7043" />
+  </g>
+
+  <!-- araç -->
+  <g>
+    <rect x="200" y="172" width="34" height="16" rx="3" fill="#1d2744" stroke="#3a4770" stroke-width="1.4" />
+    <circle cx="208" cy="190" r="4" fill="#070b18" stroke="#3a4770" />
+    <circle cx="226" cy="190" r="4" fill="#070b18" stroke="#3a4770" />
+  </g>
+</svg>
