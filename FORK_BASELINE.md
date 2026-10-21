@@ -49,11 +49,28 @@ değil), `docker-compose.cebi-landing.yml` (izole network, port `3102` —
 `astro.config.mjs`'deki `SITE` ve `public/robots.txt`'deki `Sitemap:` satırı
 artık placeholder değil, kesin değer.
 
-**Doğrulanamadı (bu ortamda Docker daemon yok):** `docker build` sunucuda ilk
-kez denenmeli — `npm run build` (Astro static çıktısı) burada zaten temiz
-doğrulandı, Dockerfile bunu birebir sarmalıyor, ama konteyner build'i fiilen
-görülmedi. DNS kaydı + host Caddy site bloğu henüz açılmadı (bkz. README.md
-"Deploy" bölümü — adımlar orada, sunucuda elle yapılacak).
+**2026-10-21 (aynı gün, devam) — TAMAMLANDI ve canlıda doğrulandı:** Cem
+`/opt/cebi-landing`'e clone edip `docker compose -f docker-compose.cebi-
+landing.yml up -d --build cebi-landing` çalıştırdı — 17/17 adım 13.3s'de
+temiz tamamlandı, `cebi-landing-net` ağı ve container sorunsuz ayağa kalktı
+(bu ortamda Docker daemon olmadığı için konteyner build'i ilk kez sunucuda
+görüldü — `npm run build` çıktısı zaten burada doğrulanmıştı). `curl
+http://127.0.0.1:3102` tam doğru HTML döndü (hero mockup + feature tabs
+hydrate olmuş, demo CTA'sız footer).
+
+DNS: Cloudflare'de `cebi.tulipfleet.com` → `49.12.246.212` A kaydı eklendi
+(Proxied), `cebi-dispatcher.tulipfleet.com` ile aynı desen. Origin
+Certificate (RSA 2048, tek host, 15 yıl) oluşturulup sunucuya
+`/etc/caddy/origin/cebi-landing.{crt,key}` olarak elle kopyalandı (private
+key hiçbir zaman chat/docs'a yapıştırılmadı — izinler doğrulandı: `.crt`
+644, `.key` 640, `root:caddy`, `cebi-dispatcher.{crt,key}` ile birebir
+aynı). Host `/etc/caddy/Caddyfile`'a `cebi-dispatcher` bloğunun birebir
+kopyası eklendi (domain, cert/key yolu, `reverse_proxy 127.0.0.1:3102`
+değiştirilerek) — `caddy validate` + `systemctl reload caddy` temiz,
+`curl -I https://cebi.tulipfleet.com` → `200`, HSTS/güvenlik header'ları
+doğru, Cloudflare üzerinden (`server: cloudflare`, `cf-ray` mevcut).
+
+Dağıtım artık sadece kayıtlı değil, fiilen canlı ve uçtan uca doğrulanmış.
 
 ## Revizyon (2026-10-21, aynı gün) — "Demo İsteyin" CTA'sı kaldırıldı
 
