@@ -47,8 +47,6 @@ export interface SiteContent {
   };
   nav: {
     features: string;
-    contact: string;
-    demoCta: string;
     menu: string;
     primaryAria: string;
   };
@@ -56,7 +54,6 @@ export interface SiteContent {
     badge: string;
     title: string;
     subtitle: string;
-    ctaDemo: string;
     ctaFeatures: string;
     mockupTitle: string;
     mockupLive: string;
@@ -115,19 +112,11 @@ export interface SiteContent {
       reports: TelemetryLine[];
     };
   };
-  demoCta: {
-    title: string;
-    body: string;
-    button: string;
-    email: string;
-    mailtoSubject: string;
-    orCall: string;
-  };
   footer: {
     tagline: string;
     product: string;
     features: string;
-    contact: string;
+    email: string;
     copyright: string;
     rights: string;
   };

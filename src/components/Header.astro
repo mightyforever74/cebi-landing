@@ -23,9 +23,6 @@ const navLink = 'text-sm font-medium text-navy-fog transition hover:text-offwhit
           <a href="#features" class="block rounded-lg px-3 py-2 text-sm font-medium text-navy-fog hover:bg-white/5 hover:text-offwhite">
             {site.nav.features}
           </a>
-          <a href="#contact" class="block rounded-lg px-3 py-2 text-sm font-medium text-navy-fog hover:bg-white/5 hover:text-offwhite">
-            {site.nav.contact}
-          </a>
         </nav>
       </details>
 
@@ -36,13 +33,6 @@ const navLink = 'text-sm font-medium text-navy-fog transition hover:text-offwhit
 
     <nav class="hidden items-center gap-6 lg:flex" aria-label={site.nav.primaryAria}>
       <a href="#features" class={navLink}>{site.nav.features}</a>
-      <a href="#contact" class={navLink}>{site.nav.contact}</a>
     </nav>
-
-    <div class="flex items-center gap-1.5 sm:gap-3">
-      <a href="#contact" class="btn-primary h-10 whitespace-nowrap !px-3.5 text-sm sm:!px-4">
-        {site.nav.demoCta}
-      </a>
-    </div>
   </div>
 </header>

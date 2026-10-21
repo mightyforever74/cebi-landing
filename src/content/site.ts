@@ -17,8 +17,6 @@ const site: SiteContent = {
   },
   nav: {
     features: 'Özellikler',
-    contact: 'İletişim',
-    demoCta: 'Demo İsteyin',
     menu: 'Menü',
     primaryAria: 'Birincil gezinme',
   },
@@ -27,7 +25,6 @@ const site: SiteContent = {
     title: 'Sahadaki her hareketi tek ekrandan görün',
     subtitle:
       'Gemi boşaltma ve kantar geçişini geofence ile otomatik doğrulayın, dispatcher panelinden hatasız canlı kargo takibi yapın. Telsiz, WhatsApp ve kağıt puantaj yerine tek sistem.',
-    ctaDemo: 'Demo İsteyin',
     ctaFeatures: 'Özellikleri Gör',
     mockupTitle: 'Cebi Dispatcher — Canlı',
     mockupLive: 'Canlı',
@@ -259,20 +256,11 @@ const site: SiteContent = {
       },
     ],
   },
-  demoCta: {
-    title: 'Sahanızı birlikte canlıda gösterelim.',
-    body:
-      'Mevcut operasyonunuzu anlatın, Cebi’yi sizin filonuzla birlikte canlı demo üzerinden gösterelim — kurulum ve ilk adımları birlikte planlarız.',
-    button: 'Demo Talebi Gönder',
-    email: 'info@tulipfleet.com',
-    mailtoSubject: 'Cebi demo talebi',
-    orCall: 'veya doğrudan yazın:',
-  },
   footer: {
     tagline: 'Saha operasyonu için tek ekran — geofence, dispatcher ve filo yönetimi bir arada.',
     product: 'Ürün',
     features: 'Özellikler',
-    contact: 'İletişim',
+    email: 'info@tulipfleet.com',
     copyright: '© 2026 Cebi — TulipFleet Customer Edition',
     rights: 'Tüm hakları saklıdır.',
   },
