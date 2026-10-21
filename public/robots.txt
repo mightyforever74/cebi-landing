@@ -19,5 +19,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-# TODO: alan adı netleşince astro.config.mjs'deki SITE ile birlikte güncelle.
 Sitemap: https://cebi.tulipfleet.com/sitemap-index.xml

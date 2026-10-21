@@ -1,0 +1,28 @@
+# Cebi (TulipFleet Customer Edition) — cebi-landing, izole statik servis.
+#
+# ADR-CE-03 "Bağımsız Çalışma Zamanı" deseni — cebi-dispatcher'ın izolasyon
+# desenini birebir izler: ayrı network, sadece 127.0.0.1'e bind, dış erişim
+# host Caddy üzerinden. cebi-backend/cebi-db/cebi-dispatcher container'larıyla
+# HİÇBİR ortak network/volume/env paylaşmaz (tam mantıksal izolasyon).
+#
+# Bu site hiçbir backend API'ye konuşmaz (salt statik tanıtım sayfası), bu
+# yüzden docker compose'un kendi `.env`-ikamesine bağlı HİÇBİR ${DEĞİŞKEN}
+# yok — cebi-backend'deki 2026-10-19 drift olayının burada tekrar
+# üretilmesi için zaten bir mekanizma yok.
+
+networks:
+  cebi-landing-net:
+    name: cebi-landing-net
+    driver: bridge
+
+services:
+  cebi-landing:
+    build: .
+    container_name: cebi-landing
+    restart: unless-stopped
+    networks:
+      - cebi-landing-net
+    ports:
+      # Sadece loopback'e bind — cebi-backend (3100) / cebi-dispatcher (3101)
+      # deseniyle tutarlı, bir sonraki boş port.
+      - "127.0.0.1:3102:80"

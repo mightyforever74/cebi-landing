@@ -4,7 +4,8 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
-// TODO: Cebi'nin kendi alan adı netleşince güncelle (bkz. FORK_BASELINE.md).
+// Domain kararı kapandı 2026-10-21 (Cem) — cebi-dispatcher.tulipfleet.com
+// deseniyle tutarlı, www yok. Bkz. FORK_BASELINE.md.
 const SITE = 'https://cebi.tulipfleet.com';
 
 // https://astro.build/config

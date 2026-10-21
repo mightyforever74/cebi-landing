@@ -46,14 +46,30 @@ npm run preview  # preview production build
 
 ## Deploy
 
-Henüz kesinleşmedi. Kardeş repo `cebi-dispatcher`'ın izlediği desen (ADR-CE-03,
-`fleet-enterprise-01`'in kendi Caddy'si üzerinden statik servis — Cloudflare
-Pages değil) burada da uygulanabilir; domain/subdomain Cem tarafından
-belirlenecek. `astro.config.mjs`'deki `SITE` sabiti ve `public/robots.txt`'deki
-`Sitemap:` satırı, gerçek domain netleşince güncellenmeli.
+`fleet-enterprise-01`'in kendi Caddy'si üzerinden statik servis — `cebi-dispatcher`
+ile birebir aynı desen (ADR-CE-03, Cloudflare Pages DEĞİL). Domain kararı
+kapandı: **`cebi.tulipfleet.com`** (www yok).
+
+```bash
+# sunucuda
+cd /opt
+git clone https://github.com/mightyforever74/cebi-landing
+cd cebi-landing
+docker compose -f docker-compose.cebi-landing.yml up -d --build cebi-landing
+curl http://127.0.0.1:3102   # statik dosya sunucusu ayakta mı
+```
+
+Sonra host Caddy'sine (`/etc/caddy/Caddyfile`) `cebi-dispatcher.tulipfleet.com`
+site bloğunun bir kopyası eklenir (domain + origin cert yolu değiştirilerek),
+Cloudflare'de `cebi.tulipfleet.com` için A/CNAME kaydı açılır (Proxied), sonra
+`caddy validate && systemctl reload caddy`. Bu adımlar repo dışında, sunucuda
+elle yapılır — `cebi-dispatcher/FORK_BASELINE.md`'deki 2026-10-19 girdisi
+referans alınabilir.
+
+Port deseni: `cebi-backend` → 3100, `cebi-dispatcher` → 3101, `cebi-landing` → 3102
+(hepsi sadece `127.0.0.1`'e bind, dış erişim host Caddy üzerinden).
 
 ## TODO
 
-- Gerçek domain/subdomain kararı (`astro.config.mjs` → `SITE`, `public/robots.txt`)
-- Dağıtım platformu kararı (muhtemelen `cebi-dispatcher` deseni — bkz. yukarıda)
+- Sunucuda ilk deploy + DNS + host Caddy site bloğu (yukarıdaki adımlar — henüz yapılmadı)
 - Varsa gerçek Cebi ürün ekran görüntüleri (şu an sadece CSS/SVG temsili görünüm var — gerçek TulipFleet ekran görüntüleri bilerek kullanılmadı, marka karışıklığı riski)

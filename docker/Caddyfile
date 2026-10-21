@@ -1,0 +1,21 @@
+# cebi-landing — container İÇİ statik dosya sunucusu.
+#
+# Bu, host'un /etc/caddy/Caddyfile'ı DEĞİL — host Caddy'si bu container'a
+# reverse_proxy yapar (bkz. ADR-CE-03 §2 madde 7 ve docker-compose.cebi-
+# landing.yml). TLS, Cloudflare Origin Cert, gzip/zstd, güvenlik header'ları
+# hepsi HOST Caddy'sinde — burada TEKRAR edilmez.
+#
+# cebi-dispatcher'dan fark: bu bir SPA değil (Astro static multi-page site),
+# bu yüzden her bulunamayan path'i index.html'e düşürmüyoruz — gerçek bir
+# 404 sayfası var (`src/pages/404.astro` → dist/404.html) ve 404 durumunda o
+# sunulur.
+
+:80 {
+	root * /usr/share/caddy
+	file_server
+	handle_errors {
+		@404 expression {http.error.status_code} == 404
+		rewrite @404 /404.html
+		file_server
+	}
+}

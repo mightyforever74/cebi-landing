@@ -33,7 +33,27 @@ Tek-geçişte tam yeniden yapılandırma yapıldı (i18n/Dictionary soyutlaması
 - **İçerik — "live" vs "roadmap" dürüstlük kontrolü yapıldı:** Landing page yazılırken `cebi-backend`'de `grep -ri "yevmiye\|per_diem"` ile kontrol edildi — rota bazlı otomatik yevmiye hesaplama henüz kodlanmamış, bu yüzden sayfada **"roadmap"** (sırada) olarak işaretlendi, "live" değil. Geofence/kantar (ADR-CE-04) ve dispatcher/canlı takip gerçekten bu oturumda doğrulanmış çalışan özellikler oldukları için "live" işaretlendi.
 - **CSS sınıf isimleri genelleştirildi:** `.heffing-card`→`.metric-card`, `.heffing-amount`→`.metric-amount`, `.zone-ok`→`.status-ok`, `.zone-alert`→`.status-alert` (NL-vergi terminolojisi koddan da temizlendi). Hero mockup'taki `amsterdam-map-scene.svg` (ID'lere bağlı CSS animasyonuyla) tamamen kaldırıldı; yerine yeni `geofence-port-scene.svg` (liman/gemi/kantar/geofence halkaları) + jenerik radar-pulse animasyonu.
 - **Doğrulama:** `npm install` + `npm run build` temiz geçti, `astro preview` ile Playwright üzerinden tam sayfa ekran görüntüsü alınıp görsel olarak kontrol edildi — NL/ZE-Zone/TulipFleet marka kalıntısı yok, Türkçe içerik eksiksiz render oluyor.
-- **Açık/bekleyen:** Gerçek domain/subdomain kararı yok (`astro.config.mjs`'de placeholder `https://cebi.tulipfleet.com`), dağıtım platformu kararı yok (muhtemelen `cebi-dispatcher`'ın izlediği ADR-CE-03 deseni, ama Cem onaylamadı), `info@tulipfleet.com` placeholder iletişim adresi olarak kullanıldı (Cebi'nin kendi adresi yoksa).
+- **Açık/bekleyen (bu girdi kapatıldı — bkz. aşağıdaki "Domain + dağıtım" revizyonu):** ~~Gerçek domain/subdomain kararı yok~~, ~~dağıtım platformu kararı yok~~. `info@tulipfleet.com` hâlâ placeholder iletişim adresi (Cebi'nin kendi adresi yoksa).
+
+## Domain + dağıtım platformu kararı kapandı (2026-10-21, aynı gün)
+
+Domain: **`cebi.tulipfleet.com`** (www yok — `cebi-dispatcher.tulipfleet.com`
+deseniyle tutarlı, Cem onayladı). Dağıtım platformu: `cebi-dispatcher`'ın
+izlediği ADR-CE-03 deseni — Cloudflare Pages DEĞİL, `fleet-enterprise-01`'in
+kendi Caddy'si. Eklenenler: `Dockerfile` (iki aşamalı — `node:22-alpine` Astro
+static build + `caddy:2-alpine` statik servis; cebi-dispatcher'dan fark: bu bir
+SPA değil, build-time API env değişkeni de gerekmiyor — site hiçbir backend'e
+konuşmuyor), `docker/Caddyfile` (container-içi 404 handling, SPA fallback
+değil), `docker-compose.cebi-landing.yml` (izole network, port `3102` —
+`cebi-backend` 3100 / `cebi-dispatcher` 3101 deseninin devamı), `.dockerignore`.
+`astro.config.mjs`'deki `SITE` ve `public/robots.txt`'deki `Sitemap:` satırı
+artık placeholder değil, kesin değer.
+
+**Doğrulanamadı (bu ortamda Docker daemon yok):** `docker build` sunucuda ilk
+kez denenmeli — `npm run build` (Astro static çıktısı) burada zaten temiz
+doğrulandı, Dockerfile bunu birebir sarmalıyor, ama konteyner build'i fiilen
+görülmedi. DNS kaydı + host Caddy site bloğu henüz açılmadı (bkz. README.md
+"Deploy" bölümü — adımlar orada, sunucuda elle yapılacak).
 
 ## Revizyon (2026-10-21, aynı gün) — "Demo İsteyin" CTA'sı kaldırıldı
 
